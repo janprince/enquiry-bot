@@ -1,0 +1,11 @@
+media/
+static/
+
+*.env
+
+db.sqlite3
+*.sql
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc

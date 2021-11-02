@@ -65,4 +65,6 @@ def setWebHook(hook_url):
 
 
 if __name__ == "__main__":
-    setWebHook("https://d000-197-255-127-145.ngrok.io")
+    setWebHook("https://hallbot.pythonanywhere.com/2056767990:AAGcll2S1e9skPuJoPHgDJFKcTuDqtNvwhw")
+
+# https://hallbot.pythonanywhere.com/2056767990:AAGcll2S1e9skPuJoPHgDJFKcTuDqtNvwhw

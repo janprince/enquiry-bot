@@ -54,17 +54,4 @@ def send_msg(chat_id, response_text):
     token = os.environ["TOKEN"]
     url = f"https://api.telegram.org/bot{token}"
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text})
-    r = requests.get(f"{url}/ReplyKeyboardMarkup", params={"keyboard": ['/start', '/info']})
-
-
-def setWebHook(hook_url):
-    url = f"https://api.telegram.org/bot{token}"
-    r = requests.get(f"{url}/setWebHook", params={"url": hook_url})
-    print(r.status_code)
-    print(r.json())
-
-
-if __name__ == "__main__":
-    setWebHook("https://hallbot.pythonanywhere.com/2056767990:AAGcll2S1e9skPuJoPHgDJFKcTuDqtNvwhw")
-
-# https://hallbot.pythonanywhere.com/2056767990:AAGcll2S1e9skPuJoPHgDJFKcTuDqtNvwhw
+    r = requests.get(f"{url}/ReplyKeyboardMarkup", params={"keyboard": [['/start', '/info']]})

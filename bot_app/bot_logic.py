@@ -1,6 +1,8 @@
 import requests
 import os
 import environ
+import json
+
 env = environ.Env()
 # reads .env file
 environ.Env.read_env("../bot/.env")
@@ -9,8 +11,8 @@ token = os.environ["TOKEN"]
 
 def index(name):
     text = f"""
-        Hi {name} 👋, 
-        \n I can provide some assistance and address your concerns and various enquiries on Jubilee Hall. 
+        Hi {name} 👋,
+        \n I can provide some assistance and address your concerns and various enquiries on Jubilee Hall.
         \n\n Use /start to start a conversation
         \n Use /menu to return to this menu.
         \n Use /help to get the available commands
@@ -28,11 +30,11 @@ blocks containing single study bedrooms, self-contained flats and double rooms. 
 the Hall include common rooms, libraries and restaurants. There are rooms suitable for
 disabled students.
 \n
-\n GPS Address: 
-\n Contact: 
+\n GPS Address:
+\n Contact:
 \n
-\n <b>JCR President</b>: 
-\n Hall Head / Senior Tutor: 
+\n <b>JCR President</b>:
+\n Hall Head / Senior Tutor:
 """
 
 
@@ -53,5 +55,6 @@ def generate_response(firstname, chat_id, msg):
 def send_msg(chat_id, response_text):
     token = os.environ["TOKEN"]
     url = f"https://api.telegram.org/bot{token}"
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text})
-    r = requests.get(f"{url}/ReplyKeyboardMarkup", params={"keyboard": [['/start', '/info']]})
+    reply_markup={"keyboard":[["Make an Enquiry","Lodge a complaint"]],"one_time_keyboard":True}
+    x = json.dumps(reply_markup)
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text, "reply_markup": x})

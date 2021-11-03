@@ -70,6 +70,11 @@ def complaint(chat_id):
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
 
+def greet(name, chat_id):
+    response = f"Hello, {name}"
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
+
+
 def exception(chat_id):
     response = "Sorry, I don't quite get that."
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
@@ -84,7 +89,7 @@ def generate_response(firstname, chat_id, msg):
     msg = msg.lower()
 
     if "hi" in msg or "hello" in msg or "good" in msg:
-        response = f"Hello {firstname}"
+        greet(firstname, chat_id)
     elif "/start" in msg:
         index(firstname, chat_id)
     elif "/about" in msg or "/info" in msg:

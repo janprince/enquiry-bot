@@ -100,6 +100,12 @@ def generate_response(firstname, chat_id, msg):
         complaint(chat_id)
     elif "/cancel" in msg or "no, that's it for now" in msg:
         exit(firstname, chat_id)
+    elif "fees and dues" in msg:
+        fees(chat_id)
+    elif "hall fees" in msg:
+        hall_fee(chat_id)
+    elif "jcr fees" in msg:
+        jcr_fee(chat_id)
     else:
         exception(chat_id)
 
@@ -141,7 +147,7 @@ def hall_fee(chat_id):
 def jcr_fee(chat_id):
     response = """ Payment of JCR fees are made at Consolidated Bank Ghana (CBG).
         \nAccount Name: JubileeHallJCR
-        \nAccount Number: xxxxxxxxxxx 
+        \nAccount Number: 1400000451187 
     """
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
 

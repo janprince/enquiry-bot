@@ -103,12 +103,11 @@ def generate_response(firstname, chat_id, msg):
     elif "fees and dues" in msg:
         fees(chat_id)
     elif "hall fees" in msg:
-        hall_fee(chat_id)
+        fee(chat_id, 'hall')
     elif "jcr fees" in msg:
-        jcr_fee(chat_id)
+        fee(chat_id, 'jcr')
     else:
         exception(chat_id)
-
 
 
 # def send_msg(chat_id, response_text):
@@ -130,30 +129,36 @@ def fees(chat_id):
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
 
-def hall_fee(chat_id):
-    response = """ Payment of hall fees are made at Consolidated Bank Ghana (CBG).
-        \n<b>Account Name:</b> Jubilee Hall
-        \n<b>Account Number:</b> xxxxxxxxxxx
-    """
+def fee(chat_id, type):
+    response = ""
+    if type == "hall":
+        response = """ Payment of hall fees are made at Consolidated Bank Ghana (CBG).
+            \n<b>Account Name:</b> Jubilee Hall
+            \n<b>Account Number:</b> xxxxxxxxxxx
+        """
+    elif type == "jcr":
+        response = """ Payment of JCR fees are made at Consolidated Bank Ghana (CBG).
+            \n<b>Account Name:</b> JubileeHallJCR
+            \n<b>Account Number:</b> 1400000451187
+        """
+    elif type == 'fuel':
+        response = """"""
+
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
 
-    response_2 = "Would you like to make another enquiry ?"
+    # ask user if there is another enquiry.
+    another_enquiry(chat_id)
+
+
+def another_enquiry(chat_id):
+    """
+    this function is run when a user is done with an enquiry.
+    """
+    import time
+    time.sleep(3)
+    response = "Would you like to make another enquiry ?"
+
     # ReplyKeyboardMarkup Object
     keyboard_markup = {"keyboard": [["Yes, I would like to make another enquiry ?", "No, that's it for now."]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_2, "reply_markup": reply_keyboard_markup})
-
-
-def jcr_fee(chat_id):
-    response = """ Payment of JCR fees are made at Consolidated Bank Ghana (CBG).
-        \n<b>Account Name:</b> JubileeHallJCR
-        \n<b>Account Number:</b> 1400000451187
-    """
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
-
-    response_2 = "Would you like to make another enquiry ?"
-
-    # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Yes, I would like to make another enquiry ?", "No, that's it for now."]], "one_time_keyboard": True}
-    reply_keyboard_markup = json.dumps(keyboard_markup)
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_2, "reply_markup": reply_keyboard_markup})
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})

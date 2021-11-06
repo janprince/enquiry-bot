@@ -10,11 +10,11 @@ environ.Env.read_env("../bot/.env")
 # telegram bot token
 token = os.environ["TOKEN"]
 
-#telegram bot api base_url
+# telegram bot api base_url
 url = f"https://api.telegram.org/bot{token}"
 
 
-#functions
+#  functions
 
 def index(firstname, chat_id):
     response_text = f"""
@@ -80,8 +80,8 @@ def exception(chat_id):
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
 
 
-def exit(chat_id):
-    response = "👋 Bye! I hope we can talk again some day."
+def exit(name, chat_id):
+    response = "👋 Bye {} I hope we can talk again some day.".format(name)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
 
 
@@ -98,8 +98,8 @@ def generate_response(firstname, chat_id, msg):
         enquiry(chat_id)
     elif "/compliant" in msg or "complaint" in msg:
         complaint(chat_id)
-    elif "/cancel" in msg:
-        exit(chat_id)
+    elif "/cancel" in msg or "no, that's it for now" in msg:
+        exit(firstname, chat_id)
     else:
         exception(chat_id)
 
@@ -111,3 +111,44 @@ def generate_response(firstname, chat_id, msg):
 #     reply_markup={"keyboard":[["Make an Enquiry","Lodge a complaint"]],"one_time_keyboard":True}
 #     x = json.dumps(reply_markup)
 #     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text, "reply_markup": x})
+
+# fees
+def fees(chat_id):
+    response = """ Hall fees, JCR fees and any subsequent fees or dues are paid at the bank.
+                    \n For more info on where and how to make a payment select one of the options below.
+                """
+
+    # ReplyKeyboardMarkup Object
+    keyboard_markup = {"keyboard": [["Hall Fees", "JCR Fees"], ["Fuel Fees", "Other Fees"]], "one_time_keyboard": True}
+    reply_keyboard_markup = json.dumps(keyboard_markup)
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
+
+
+def hall_fee(chat_id):
+    response = """ Payment of hall fees are made at Consolidated Bank Ghana (CBG).
+        \nAccount Name: Jubilee Hall
+        \nAccount Number: xxxxxxxxxxx 
+    """
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
+
+    response_2 = "Would you like to make another enquiry ?"
+    # ReplyKeyboardMarkup Object
+    keyboard_markup = {"keyboard": [["Yes, I would like to make another enquiry ?", "No, that's it for now."]], "one_time_keyboard": True}
+    reply_keyboard_markup = json.dumps(keyboard_markup)
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_2, "reply_markup": reply_keyboard_markup})
+
+
+def jcr_fee(chat_id):
+    response = """ Payment of JCR fees are made at Consolidated Bank Ghana (CBG).
+        \nAccount Name: JubileeHallJCR
+        \nAccount Number: xxxxxxxxxxx 
+    """
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
+
+    response_2 = "Would you like to make another enquiry ?"
+    # ReplyKeyboardMarkup Object
+    keyboard_markup = {"keyboard": [["Yes, I would like to make another enquiry ?", "No, that's it for now."]],
+                       "one_time_keyboard": True}
+    reply_keyboard_markup = json.dumps(keyboard_markup)
+    r = requests.get(f"{url}/sendMessage",
+                     params={"chat_id": chat_id, "text": response_2, "reply_markup": reply_keyboard_markup})

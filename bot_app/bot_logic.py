@@ -132,10 +132,10 @@ def fees(chat_id):
 
 def hall_fee(chat_id):
     response = """ Payment of hall fees are made at Consolidated Bank Ghana (CBG).
-        \nAccount Name: Jubilee Hall
-        \nAccount Number: xxxxxxxxxxx 
+        \n<b>Account Name:</b> Jubilee Hall
+        \n<b>Account Number:</b> xxxxxxxxxxx
     """
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
 
     response_2 = "Would you like to make another enquiry ?"
     # ReplyKeyboardMarkup Object
@@ -146,15 +146,14 @@ def hall_fee(chat_id):
 
 def jcr_fee(chat_id):
     response = """ Payment of JCR fees are made at Consolidated Bank Ghana (CBG).
-        \nAccount Name: JubileeHallJCR
-        \nAccount Number: 1400000451187 
+        \n<b>Account Name:</b> JubileeHallJCR
+        \n<b>Account Number:</b> 1400000451187
     """
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
 
     response_2 = "Would you like to make another enquiry ?"
+
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Yes, I would like to make another enquiry ?", "No, that's it for now."]],
-                       "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["Yes, I would like to make another enquiry ?", "No, that's it for now."]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
-    r = requests.get(f"{url}/sendMessage",
-                     params={"chat_id": chat_id, "text": response_2, "reply_markup": reply_keyboard_markup})
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_2, "reply_markup": reply_keyboard_markup})

@@ -32,6 +32,8 @@ def generate_response(firstname, chat_id, msg):
         index(firstname, chat_id)
     elif "/about" in msg or "/info" in msg:
         info(chat_id)
+    elif "/menu" in msg or 'menu' in msg:
+        menu(chat_id)
     elif "/enquiry" in msg or "enquiry" in msg:
         enquiry(chat_id)
     elif "/compliant" in msg or "complaint" in msg:

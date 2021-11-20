@@ -41,12 +41,30 @@ def generate_response(firstname, chat_id, msg):
         complaint(chat_id)
     elif "/cancel" in msg or "no, that's it for now" in msg or '/exit' in msg or 'bye' in msg:
         exit(firstname, chat_id)
+    # enquiry/fees_dues
     elif "fees and dues" in msg:
         fees(chat_id)
+    # enquiry/fees_dues/hall_fees
     elif "hall fees" in msg:
         fee(chat_id, 'hall')
+    # enquiry/fees_dues/jcr_fees
     elif "jcr fees" in msg:
         fee(chat_id, 'jcr')
+    # enquiry/fees_dues/fuel_fees
+    elif "fuel fees" in msg:
+        fee(chat_id, 'fuel')
+    # enquiry/fees_dues/other_fees
+    elif "other fees" in msg:
+        fee(chat_id, 'other')
+    # enquiry/jcr
+    elif "jcr" in msg:
+        fees(chat_id)
+    # enquiry/hall_accommodation
+    elif "hall accommodation" in msg:
+        fees(chat_id)
+    # enquiry/facilities
+    elif "facilities" in msg:
+        fees(chat_id)
     else:
         exception(chat_id)
 

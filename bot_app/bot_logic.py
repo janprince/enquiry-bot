@@ -2,6 +2,7 @@ import requests
 import os
 import environ
 import json
+import time
 
 env = environ.Env()
 # reads .env file
@@ -185,12 +186,14 @@ def fee(chat_id, type):
 
 
 def complaint(chat_id):
-    response = "What is your enquiry about?"
+    response = "Click on the button below to lodge a complaint."
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["qwerty", "qwerty"]], "one_time_keyboard": True}
-    reply_keyboard_markup = json.dumps(keyboard_markup)
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
+    inline_keyboard_button = {"text": "Lodge a Complaint", "url": "https://forms.gle/CyxAzJSc2gryPYuN9"}
+    inline_keyboard_button = json.dumps(inline_keyboard_button)
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": inline_keyboard_button})
+    time.sleep(10)
+    another_enquiry()
 
 
 

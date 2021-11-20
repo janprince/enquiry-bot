@@ -138,12 +138,12 @@ def enquiry(chat_id):
     response = "What is your enquiry about?"
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Hall Accommodation", "Services"], ["Fees and Dues", "JCR"], ["Facilities"]], "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["Fees and Dues", "JCR",], ["Hall Accommodation", "Facilities"]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
 
-# fees
+# enquiry/fees_and_dues
 def fees(chat_id):
     response = """ Hall fees, JCR fees and any subsequent fees or dues are paid at the bank.
                     \n For more info on where and how to make a payment select one of the options below.
@@ -155,6 +155,7 @@ def fees(chat_id):
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
 
+# enquiry/fees_and_dues/(hall/jcr/fuel)
 def fee(chat_id, type):
     response = ""
     if type == "hall":
@@ -167,8 +168,8 @@ def fee(chat_id, type):
             \n<b>Account Name:</b> JubileeHallJCR
             \n<b>Account Number:</b> 1400000451187
         """
-    elif type == 'fuel':
-        response = """"""
+    else:
+        response = """No information on this type of fee. Kindly visit the Administrative office or the porters lodge for more information."""
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
 
@@ -176,9 +177,40 @@ def fee(chat_id, type):
     another_enquiry(chat_id)
 
 
-# hall accomodation
+# enquiry/hall_accomaodation
+def hall_accomodation(chat_id):
+    response = """ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                """
 
-# jcr
+    # ReplyKeyboardMarkup Object
+    keyboard_markup = {"keyboard": [["Hall Fees", "JCR Fees"], ["Fuel Fees", "Other Fees"]],
+                       "one_time_keyboard": True}
+    reply_keyboard_markup = json.dumps(keyboard_markup)
+    r = requests.get(f"{url}/sendMessage",
+                     params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
+
+
+# enquiry/jcr
+def jcr(chat_id):
+    response = """ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                """
+
+    # ReplyKeyboardMarkup Object
+    keyboard_markup = {"keyboard": [["JCR Executives"], ["Function of JCR"]], "one_time_keyboard": True}
+    reply_keyboard_markup = json.dumps(keyboard_markup)
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
+
+
+# enquiry/facilities
+def facilities(chat_id):
+    response = """ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                """
+
+    # ReplyKeyboardMarkup Object
+    keyboard_markup = {"keyboard": [["JCR Executives"], ["Function of JCR"]], "one_time_keyboard": True}
+    reply_keyboard_markup = json.dumps(keyboard_markup)
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
+
 
 
 
@@ -192,8 +224,6 @@ def complaint(chat_id):
     inline_keyboard = {"inline_keyboard": [[{"text": "Complaint Form", "url": "https://forms.gle/CyxAzJSc2gryPYuN9", "callback_data": "Form Opened"}],]}
     inline_keyboard_markup = json.dumps(inline_keyboard)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": inline_keyboard_markup})
-
-
 
 
 """---------------------------------------- User done ------------------------------------------------------"""

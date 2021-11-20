@@ -74,11 +74,11 @@ def index(firstname, chat_id):
 
 def info(chat_id):
     about_text = """
-        Jubilee Hall, located on the southern part of the campus, adjacent to the International Students‘ Hostel, 
-        was built to commemorate the University‘s Golden Jubilee celebration in 1998. Modeled after Akuafo Hall, 
-        one of the traditional Halls of the University, and funded mainly by alumni of the University, 
-        the Hall is a group of 4 (four) multi-purpose blocks containing single study bedrooms, self-contained 
-        flats and double rooms. Facilities in the Hall include common rooms, libraries and restaurants. 
+        Jubilee Hall, located on the southern part of the campus, adjacent to the International Students‘ Hostel,
+        was built to commemorate the University‘s Golden Jubilee celebration in 1998. Modeled after Akuafo Hall,
+        one of the traditional Halls of the University, and funded mainly by alumni of the University,
+        the Hall is a group of 4 (four) multi-purpose blocks containing single study bedrooms, self-contained
+        flats and double rooms. Facilities in the Hall include common rooms, libraries and restaurants.
         There are rooms suitable for disabled students.
         \n
         \n GPS Address: John Doe
@@ -106,9 +106,9 @@ def menu(chat_id):
         \n\n Use /about or /info to read about Jubilee Hall.
     """
 
-    # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Make an Enquiry", "Lodge a complaint"]], "one_time_keyboard": True}
-    reply_keyboard_markup = json.dumps(keyboard_markup)    # converts dict to json
+    # # ReplyKeyboardMarkup Object
+    # keyboard_markup = {"keyboard": [["Make an Enquiry", "Lodge a complaint"]], "one_time_keyboard": True}
+    # reply_keyboard_markup = json.dumps(keyboard_markup)    # converts dict to json
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text, "reply_markup": reply_keyboard_markup, "parse_mode":"HTML"})
 
@@ -188,12 +188,11 @@ def fee(chat_id, type):
 def complaint(chat_id):
     response = "Click on the button below to lodge a complaint."
 
-    # ReplyKeyboardMarkup Object
-    inline_keyboard_button = {"text": "Lodge a Complaint", "url": "https://forms.gle/CyxAzJSc2gryPYuN9"}
-    inline_keyboard_button = json.dumps(inline_keyboard_button)
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": inline_keyboard_button})
-    time.sleep(10)
-    another_enquiry()
+    # InlineKeyboardMarkup Object
+    inline_keyboard = {"inline_keyboard": [[{"text": "Complaint Form", "url": "https://forms.gle/CyxAzJSc2gryPYuN9", "callback_data": "Form Opened"}],]}
+    inline_keyboard_markup = json.dumps(inline_keyboard)
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": inline_keyboard_markup})
+
 
 
 
@@ -203,7 +202,6 @@ def another_enquiry(chat_id):
     """
     this function is run when a user is done with an enquiry.
     """
-    import time
     time.sleep(3)
     response = "Would you like to make another enquiry ?"
 

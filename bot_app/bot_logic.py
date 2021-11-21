@@ -260,6 +260,10 @@ def hall(chat_id, type):
 => <i>You may be asked to give up your room.</i>
 \n3. Are we allowed to keep our friends overnight or allow them to perch with us?
 => <i>Jubilee hall does not condone that behavior. Non-visitors are not allowed into the hall especially because of Covid</i>
+\n4. When a semester ends can we outlive our stay in the Hall?
+=> <em>No, when the semester ends students are given a set date to leave the hall.</em>
+\n5. Can a student get accommodation when the application for room is over?
+=> <em>No, the student can't, only if he had applied maybe he/she may have had a chance of being selected.</em>
         """
     elif type == "rules":
         response = "s"

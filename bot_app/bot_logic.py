@@ -254,22 +254,22 @@ def hall(chat_id, type):
         """
     elif type == "faq":
         response = """
-<b>Frequently Asked Questions</b>
-\n1. What happens when you have a room already before the semester ends but I failed to register for accommodation for the next semester?
-=> <i>Your room will be given to someone else who registered for that semester. Students are advised to apply when told you. Beyond the deadline, no student has the chance of getting a room.</i>
-\n2. What happens when I got accommodation and school resumes and I am unable to pay the hall fees?
-=> <i>You may be asked to give up your room.</i>
-\n3. Are we allowed to keep our friends overnight or allow them to perch with us?
-=> <i>Jubilee hall does not condone that behavior. Non-visitors are not allowed into the hall especially because of Covid</i>
-\n4. When a semester ends can we outlive our stay in the Hall?
-=> <em>No, when the semester ends students are given a set date to leave the hall.</em>
-\n5. Can a student get accommodation when the application for room is over?
-=> <em>No, the student can't, only if he had applied maybe he/she may have had a chance of being selected.</em>
+            <b>Frequently Asked Questions</b>
+            \n1. What happens when you have a room already before the semester ends but I failed to register for accommodation for the next semester?
+            => <i>Your room will be given to someone else who registered for that semester. Students are advised to apply when told you. Beyond the deadline, no student has the chance of getting a room.</i>
+            \n2. What happens when I got accommodation and school resumes and I am unable to pay the hall fees?
+            => <i>You may be asked to give up your room.</i>
+            \n3. Are we allowed to keep our friends overnight or allow them to perch with us?
+            => <i>Jubilee hall does not condone that behavior. Non-visitors are not allowed into the hall especially because of Covid</i>
+            \n4. When a semester ends can we outlive our stay in the Hall?
+            => <em>No, when the semester ends students are given a set date to leave the hall.</em>
+            \n5. Can a student get accommodation when the application for room is over?
+            => <em>No, the student can't, only if he had applied maybe he/she may have had a chance of being selected.</em>
         """
     elif type == "rules":
-        response = """
-
-        """
+        response = ""
+    else:
+        response = ""
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
     another_enquiry()
@@ -304,6 +304,15 @@ def facilities(chat_id):
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
+# enquiry/facilities/(rooms/shops)
+def facility(chat_id, type):
+    if type == "study":
+        response = "Second floor of the W block "
+    elif type == "discussion":
+        response = "Third floor of the Wblock"
+
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
+    another_enquiry(chat_id)
 
 
 """----------------------------------------------- Complaint --------------------------------------------------------"""

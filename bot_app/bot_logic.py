@@ -241,30 +241,15 @@ def hall(chat_id, type):
     response = ""
     if type == "room":
         response = """ 
-                    \n The current residential fees per semester for the 2020/2021 Academic year are:
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>GHC</th>
-                        </tr>
-                        <tr>
-                            <td><b>Jubilee Hall (Quadruple)</b></td>
-                            <td>613.00</td>
-                        </tr>
-                        <tr>
-                            <td><b>Jubilee Hall (Self-Contained - Double)</b></td>
-                            <td>2,056.00</td>
-                        </tr>
-                        <tr>
-                            <td><b>Jubilee Hall (Flat with Kitchenette- Double)</b></td>
-                            <td>2,305.00</td>
-                        </tr>
-                    </table>
-                    \nPayment of hall fees are made at Consolidated Bank Ghana (CBG).
-                    \n<b>Account Name:</b> Jubilee Hall
-                    \n<b>Account Number:</b> xxxxxxxxxxx
-                    \n\n * Room registration must be completed before payment of fees. (online or manual)
-                """
+            \n The current residential fees per semester for the 2020/2021 Academic year are:
+            <b>Jubilee Hall (Quadruple)</b>\t613.00
+            <b>Jubilee Hall (Self-Contained - Double)</b>\t2,056.00
+            <b>Jubilee Hall (Flat with Kitchenette- Double)</b>\t2,305.00
+            \nPayment of hall fees are made at Consolidated Bank Ghana (CBG).
+            \n<b>Account Name:</b> Jubilee Hall
+            \n<b>Account Number:</b> xxxxxxxxxxx
+            \n\n * Room registration must be completed before payment of fees. (online or manual)
+        """
     elif type == "faq":
         response = """"""
 
@@ -285,11 +270,7 @@ def jcr(chat_id):
 def jcr_detail(chat_id, type):
     if type == "executives":
         response = """
-            <b> JCR President </b> - Bright Amansiah Twerefour
-            <b> JCR Treasurer </b> - Dem Reggah 
-            <b> JCR General Secretary </b> - Quartey Theresa Naa Kwarkor
-            <b> JCR Organizing Secretary</b> - Vincent Aperko Jubilee
-            <b> Chegbeleh Arnold Tonne </b> - Dem Reggah
+            <b> JCR President </b> - Bright Amansiah Twerefour \n<b> JCR Treasurer </b> - Dem Reggah \n<b> JCR General Secretary </b> - Quartey Theresa Naa Kwarkor \n<b> JCR Organizing Secretary</b> - Vincent Aperko Jubilee \n <b> Chegbeleh Arnold Tonne </b> - Dem Reggah
         """
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode": "HTML"})
 

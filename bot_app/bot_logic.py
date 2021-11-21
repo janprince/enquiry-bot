@@ -64,6 +64,8 @@ def generate_response(firstname, chat_id, msg):
     # enquiry/hall_accommodation
     elif "hall accommodation" in msg:
         hall_accomodation(chat_id)
+    elif "room applica" in msg:
+        hall(chat_id, 'room')
     # enquiry/facilities
     elif "facilities" in msg:
         facilities(chat_id)
@@ -176,9 +178,30 @@ def fees(chat_id):
 def fee(chat_id, type):
     response = ""
     if type == "hall":
-        response = """ Payment of hall fees are made at Consolidated Bank Ghana (CBG).
+        response = """ 
+            \n The current residential fees per semester for the 2020/2021 Academic year are:
+            <table>
+                <tr>
+                    <th></th>
+                    <th>GHC</th>
+                </tr>
+                <tr>
+                    <td><b>Jubilee Hall (Quadruple)</b></td>
+                    <td>613.00</td>
+                </tr>
+                <tr>
+                    <td><b>Jubilee Hall (Self-Contained - Double)</b></td>
+                    <td>2,056.00</td>
+                </tr>
+                <tr>
+                    <td><b>Jubilee Hall (Flat with Kitchenette- Double)</b></td>
+                    <td>2,305.00</td>
+                </tr>
+            </table>
+            \nPayment of hall fees are made at Consolidated Bank Ghana (CBG).
             \n<b>Account Name:</b> Jubilee Hall
             \n<b>Account Number:</b> xxxxxxxxxxx
+            \n\n * Room registration must be completed before payment of fees. (online or manual)
         """
     elif type == "jcr":
         response = """ Payment of JCR fees are made at Consolidated Bank Ghana (CBG).
@@ -200,7 +223,7 @@ def fee(chat_id, type):
 
 # enquiry/hall_accomaodation
 def hall_accomodation(chat_id):
-    response = """ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    response = """Accommodation at Jubilee Hall is only accessible to students of the University of Ghana. For more information, Choose one of the options below. 
                 """
 
     # ReplyKeyboardMarkup Object
@@ -210,13 +233,46 @@ def hall_accomodation(chat_id):
                      params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
 
+# enquiry/hall_accomaodation/ (room_application, accomodation_faq, rules and regulations)
+def hall(chat_id, type):
+    if type == "room":
+        response = """ 
+                    \n The current residential fees per semester for the 2020/2021 Academic year are:
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>GHC</th>
+                        </tr>
+                        <tr>
+                            <td><b>Jubilee Hall (Quadruple)</b></td>
+                            <td>613.00</td>
+                        </tr>
+                        <tr>
+                            <td><b>Jubilee Hall (Self-Contained - Double)</b></td>
+                            <td>2,056.00</td>
+                        </tr>
+                        <tr>
+                            <td><b>Jubilee Hall (Flat with Kitchenette- Double)</b></td>
+                            <td>2,305.00</td>
+                        </tr>
+                    </table>
+                    \nPayment of hall fees are made at Consolidated Bank Ghana (CBG).
+                    \n<b>Account Name:</b> Jubilee Hall
+                    \n<b>Account Number:</b> xxxxxxxxxxx
+                    \n\n * Room registration must be completed before payment of fees. (online or manual)
+                """
+    elif type == "faq":
+        response = """"""
+
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response,})
+
+
 # enquiry/jcr
 def jcr(chat_id):
-    response = """ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-                """
+    response = """The JCR stands for the Junior Common Room. It made up of a board of students who aid in the management of students(residents) of the hall."""
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["JCR Executives"], ["Function of JCR"]], "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["JCR Executives", "Function of JCR"],], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 

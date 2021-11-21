@@ -67,7 +67,7 @@ def generate_response(firstname, chat_id, msg):
     # enquiry/hall_accommodation
     elif "hall accommodation" in msg:
         hall_accomodation(chat_id)
-    elif "room applica" in msg:
+    elif "room application" in msg:
         hall(chat_id, 'room')
     # enquiry/facilities
     elif "facilities" in msg:
@@ -238,6 +238,7 @@ def hall_accomodation(chat_id):
 
 # enquiry/hall_accomaodation/ (room_application, accomodation_faq, rules and regulations)
 def hall(chat_id, type):
+    response = ""
     if type == "room":
         response = """ 
                     \n The current residential fees per semester for the 2020/2021 Academic year are:

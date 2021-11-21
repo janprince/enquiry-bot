@@ -61,6 +61,8 @@ def generate_response(firstname, chat_id, msg):
     # enquiry/jcr
     elif "jcr" in msg:
         jcr(chat_id)
+    elif "jcr executives" in msg:
+        jcr_detail(chat_id, 'executives')
     # enquiry/hall_accommodation
     elif "hall accommodation" in msg:
         hall_accomodation(chat_id)
@@ -264,7 +266,7 @@ def hall(chat_id, type):
     elif type == "faq":
         response = """"""
 
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response,})
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
 
 
 # enquiry/jcr
@@ -276,6 +278,18 @@ def jcr(chat_id):
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
+
+# enquiry/jcr/ (executives, function)
+def jcr_detail(chat_id, type):
+    if type == "executives":
+        response = """
+            <p><b> JCR President </b> - Bright Amansiah Twerefour</p>
+            <p><b> JCR Treasurer </b> - Dem Reggah </p>
+            <p><b> JCR General Secretary </b> - Quartey Theresa Naa Kwarkor </p>
+            <p><b> JCR Organizing Secretary</b> - Vincent Aperko Jubilee</p>
+            <p><b> Chegbeleh Arnold Tonne </b> - Dem Reggah </p>
+        """
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode": "HTML"})
 
 # enquiry/facilities
 def facilities(chat_id):

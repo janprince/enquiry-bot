@@ -285,11 +285,11 @@ def jcr(chat_id):
 def jcr_detail(chat_id, type):
     if type == "executives":
         response = """
-            <p><b> JCR President </b> - Bright Amansiah Twerefour</p>
-            <p><b> JCR Treasurer </b> - Dem Reggah </p>
-            <p><b> JCR General Secretary </b> - Quartey Theresa Naa Kwarkor </p>
-            <p><b> JCR Organizing Secretary</b> - Vincent Aperko Jubilee</p>
-            <p><b> Chegbeleh Arnold Tonne </b> - Dem Reggah </p>
+            <b> JCR President </b> - Bright Amansiah Twerefour
+            <b> JCR Treasurer </b> - Dem Reggah 
+            <b> JCR General Secretary </b> - Quartey Theresa Naa Kwarkor
+            <b> JCR Organizing Secretary</b> - Vincent Aperko Jubilee
+            <b> Chegbeleh Arnold Tonne </b> - Dem Reggah
         """
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode": "HTML"})
 

@@ -117,7 +117,7 @@ def greet(name, chat_id):
 
 # contact
 def contact(chat_id):
-    response = """Contact us on xxxxxxxxx or send an email to xxxxxx@xxxx.com. We will reply to you shortly."""
+    response = """Contact us on ------- or send an email to jubileebot5@gmail.com. We will reply to you shortly."""
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
 
 

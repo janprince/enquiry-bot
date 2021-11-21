@@ -41,6 +41,8 @@ def generate_response(firstname, chat_id, msg):
         complaint(chat_id)
     elif "/cancel" in msg or "no, that's it for now" in msg or '/exit' in msg or 'bye' in msg:
         exit(firstname, chat_id)
+    elif "contact" in msg:
+        contact(chat_id)
     # enquiry/fees_dues
     elif "fees and dues" in msg:
         fees(chat_id)
@@ -84,7 +86,7 @@ def index(firstname, chat_id):
     """
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Make an Enquiry", "Lodge a complaint"]], "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["Make an Enquiry", "Lodge a complaint"], ["Contact Support"]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)    # converts dict to json
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text, "reply_markup": reply_keyboard_markup})
@@ -92,12 +94,7 @@ def index(firstname, chat_id):
 
 def info(chat_id):
     about_text = """
-        Jubilee Hall, located on the southern part of the campus, adjacent to the International Students‘ Hostel,
-        was built to commemorate the University‘s Golden Jubilee celebration in 1998. Modeled after Akuafo Hall,
-        one of the traditional Halls of the University, and funded mainly by alumni of the University,
-        the Hall is a group of 4 (four) multi-purpose blocks containing single study bedrooms, self-contained
-        flats and double rooms. Facilities in the Hall include common rooms, libraries and restaurants.
-        There are rooms suitable for disabled students.
+        Jubilee Hall, located on the southern part of the campus, adjacent to the International Students‘ Hostel, was built to commemorate the University‘s Golden Jubilee celebration in 1998. Modeled after Akuafo Hall, one of the traditional Halls of the University, and funded mainly by alumni of the University, the Hall is a group of 4 (four) multi-purpose blocks containing single study bedrooms, self-contained flats and double rooms. Facilities in the Hall include common rooms, libraries and restaurants. There are rooms suitable for disabled students.
         \n
         \n GPS Address: John Doe
         \n Contact:     John Doe
@@ -113,6 +110,12 @@ def greet(name, chat_id):
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
 
 
+# contact
+def contact(chat_id):
+    response = """Contact us on xxxxxxxxx or send an email to xxxxxx@xxxx.com. We will reply to you shortly."""
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
+
+
 def menu(chat_id):
     response_text = f"""
         <b>Commands</b>
@@ -124,11 +127,7 @@ def menu(chat_id):
         \n\n Use /about or /info to read about Jubilee Hall.
     """
 
-    # # ReplyKeyboardMarkup Object
-    # keyboard_markup = {"keyboard": [["Make an Enquiry", "Lodge a complaint"]], "one_time_keyboard": True}
-    # reply_keyboard_markup = json.dumps(keyboard_markup)    # converts dict to json
-
-    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text, "reply_markup": reply_keyboard_markup, "parse_mode":"HTML"})
+    r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response_text, "parse_mode":"HTML"})
 
 
 def exception(chat_id):
@@ -186,6 +185,10 @@ def fee(chat_id, type):
             \n<b>Account Name:</b> JubileeHallJCR
             \n<b>Account Number:</b> 1400000451187
         """
+    elif type == "fuel":
+        response = """ Fuel fees are used to manage electric generators/power plants when there are electric outages.
+        \n Kindly visit the administrative office for more details on payment of fuel fees.
+        """
     else:
         response = """No information on this type of fee. Kindly visit the Administrative office or the porters lodge for more information."""
 
@@ -201,7 +204,7 @@ def hall_accomodation(chat_id):
                 """
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Hall Fees", "JCR Fees"], ["Fuel Fees", "Other Fees"]],
+    keyboard_markup = {"keyboard": [["Room Application", "Accommodation FAQ"], ["Fuel Fees", "Other Fees"], ["Rules and Regulations"]],
                        "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage",
@@ -221,11 +224,10 @@ def jcr(chat_id):
 
 # enquiry/facilities
 def facilities(chat_id):
-    response = """ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-                """
+    response = """Select one of the options below to get the location."""
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["JCR Executives"], ["Function of JCR"]], "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["Study Room", "Discussion Room"], ["Shops"]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 

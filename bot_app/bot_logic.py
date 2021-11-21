@@ -58,11 +58,12 @@ def generate_response(firstname, chat_id, msg):
     # enquiry/fees_dues/other_fees
     elif "other fees" in msg:
         fee(chat_id, 'other')
+    # enquiry/jcr/jcr_executives
+    elif "jcr executives" in msg:
+        jcr_detail(chat_id, 'executives')
     # enquiry/jcr
     elif "jcr" in msg:
         jcr(chat_id)
-    elif "jcr executives" in msg:
-        jcr_detail(chat_id, 'executives')
     # enquiry/hall_accommodation
     elif "hall accommodation" in msg:
         hall_accomodation(chat_id)

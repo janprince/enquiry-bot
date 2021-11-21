@@ -60,13 +60,13 @@ def generate_response(firstname, chat_id, msg):
         fee(chat_id, 'other')
     # enquiry/jcr
     elif "jcr" in msg:
-        fees(chat_id)
+        jcr(chat_id)
     # enquiry/hall_accommodation
     elif "hall accommodation" in msg:
-        fees(chat_id)
+        hall_accomodation(chat_id)
     # enquiry/facilities
     elif "facilities" in msg:
-        fees(chat_id)
+        facilities(chat_id)
     else:
         exception(chat_id)
 
@@ -204,8 +204,7 @@ def hall_accomodation(chat_id):
                 """
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Room Application", "Accommodation FAQ"], ["Fuel Fees", "Other Fees"], ["Rules and Regulations"]],
-                       "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["Room Application", "Accommodation FAQ"], ["Rules and Regulations"]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage",
                      params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
@@ -230,7 +229,6 @@ def facilities(chat_id):
     keyboard_markup = {"keyboard": [["Study Room", "Discussion Room"], ["Shops"]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
-
 
 
 

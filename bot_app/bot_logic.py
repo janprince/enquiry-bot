@@ -254,6 +254,7 @@ def hall(chat_id, type):
         """
     elif type == "faq":
         response = """
+<b>Frequently Asked Questions</b>
 \n1. What happens when you have a room already before the semester ends but I failed to register for accommodation for the next semester?
 => <i>Your room will be given to someone else who registered for that semester. Students are advised to apply when told you. Beyond the deadline, no student has the chance of getting a room.</i>
 \n2. What happens when I got accommodation and school resumes and I am unable to pay the hall fees?
@@ -266,9 +267,12 @@ def hall(chat_id, type):
 => <em>No, the student can't, only if he had applied maybe he/she may have had a chance of being selected.</em>
         """
     elif type == "rules":
-        response = "s"
+        response = """
+
+        """
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
+    another_enquiry()
 
 
 # enquiry/jcr
@@ -276,7 +280,7 @@ def jcr(chat_id):
     response = """The JCR stands for the Junior Common Room. It made up of a board of students who aid in the management of students(residents) of the hall."""
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["JCR Executives", "Function of JCR"],], "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["JCR Executives"],], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
@@ -288,6 +292,8 @@ def jcr_detail(chat_id, type):
             <b>JCR President </b> - Bright Amansiah Twerefour \n<b>JCR Treasurer </b> - Dem Reggah \n<b>JCR General Secretary </b> - Quartey Theresa Naa Kwarkor \n<b>JCR Organizing Secretary</b> - Vincent Aperko Jubilee \n <b>Sports Secretary</b> - Chegbeleh Arnold Tonne
         """
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode": "HTML"})
+    another_enquiry(chat_id)
+
 
 # enquiry/facilities
 def facilities(chat_id):
@@ -318,7 +324,7 @@ def another_enquiry(chat_id):
     """
     this function is run when a user is done with an enquiry.
     """
-    time.sleep(3)
+    time.sleep(4)
     response = "Would you like to make another enquiry ?"
 
     # ReplyKeyboardMarkup Object

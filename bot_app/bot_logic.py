@@ -265,12 +265,9 @@ def hall(chat_id, detail):
             => <em>No, the student can't, only if he had applied maybe he/she may have had a chance of being selected.</em>
         """
     elif detail == "rules":
-        response = ""
-    else:
-        response = ""
+        response = "<b>Rules and regulations.</b>"
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
-    another_enquiry()
 
 
 # enquiry/jcr

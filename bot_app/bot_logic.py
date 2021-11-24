@@ -78,7 +78,6 @@ def generate_response(firstname, chat_id, msg):
         exception(chat_id)
 
 
-
 """----------------------------------------------- General --------------------------------------------------------"""
 
 
@@ -238,10 +237,9 @@ def hall_accomodation(chat_id):
                      params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
 
 
-# enquiry/hall_accomaodation/ (room_application, accomodation_faq, rules and regulations)
-def hall(chat_id, type):
-    response = ""
-    if type == "room":
+# enquiry/hall_accomodation/ (room_application, accomodation_faq, rules and regulations)
+def hall(chat_id, detail):
+    if detail == "room":
         response = """ 
             \n The current residential fees per semester for the 2020/2021 Academic year are:
             \n<b>1. Jubilee Hall (Quadruple)</b> - GHC613.00
@@ -252,7 +250,7 @@ def hall(chat_id, type):
             \n<b>Account Number:</b> 45686978989796543*
             \n * Room registration must be completed before payment of fees. (online or manual)
         """
-    elif type == "faq":
+    elif detail == "faq":
         response = """
             <b>Frequently Asked Questions</b>
             \n1. What happens when you have a room already before the semester ends but I failed to register for accommodation for the next semester?
@@ -266,7 +264,7 @@ def hall(chat_id, type):
             \n5. Can a student get accommodation when the application for room is over?
             => <em>No, the student can't, only if he had applied maybe he/she may have had a chance of being selected.</em>
         """
-    elif type == "rules":
+    elif detail == "rules":
         response = ""
     else:
         response = ""

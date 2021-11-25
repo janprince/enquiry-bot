@@ -190,28 +190,13 @@ def fee(chat_id, type):
     if type == "hall":
         response = """ 
             \n The current residential fees per semester for the 2020/2021 Academic year are:
-            <table>
-                <tr>
-                    <th></th>
-                    <th>GHC</th>
-                </tr>
-                <tr>
-                    <td><b>Jubilee Hall (Quadruple)</b></td>
-                    <td>613.00</td>
-                </tr>
-                <tr>
-                    <td><b>Jubilee Hall (Self-Contained - Double)</b></td>
-                    <td>2,056.00</td>
-                </tr>
-                <tr>
-                    <td><b>Jubilee Hall (Flat with Kitchenette- Double)</b></td>
-                    <td>2,305.00</td>
-                </tr>
-            </table>
+            \n<b>1. Jubilee Hall (Quadruple)</b> - GHC613.00
+            \n<b>2. Jubilee Hall (Self-Contained - Double)</b> - GHC2,056.00
+            \n<b>3. Jubilee Hall (Flat with Kitchenette- Double)</b> - GHC2,305.00
             \nPayment of hall fees are made at Consolidated Bank Ghana (CBG).
             \n<b>Account Name:</b> Jubilee Hall
-            \n<b>Account Number:</b> xxxxxxxxxxx
-            \n\n * Room registration must be completed before payment of fees. (online or manual)
+            \n<b>Account Number:</b> 45686978989796543*
+            \n * Room registration must be completed before payment of fees. (online or manual)
         """
     elif type == "jcr":
         response = """ Payment of JCR fees are made at Consolidated Bank Ghana (CBG).

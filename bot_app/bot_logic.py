@@ -108,8 +108,8 @@ def info(chat_id):
     about_text = """
         Jubilee Hall, located on the southern part of the campus, adjacent to the International Students‘ Hostel, was built to commemorate the University‘s Golden Jubilee celebration in 1998. Modeled after Akuafo Hall, one of the traditional Halls of the University, and funded mainly by alumni of the University, the Hall is a group of 4 (four) multi-purpose blocks containing single study bedrooms, self-contained flats and double rooms. Facilities in the Hall include common rooms, libraries and restaurants. There are rooms suitable for disabled students.
         \n
-        \n GPS Address: John Doe
-        \n Contact:     John Doe
+        \n GPS Address: GA-888-888
+        \n Contact:     02000000000
         \n
         \n <b>JCR President</b>:    John Doe
         \n <b>Hall Head / Senior Tutor</b>: John Doe

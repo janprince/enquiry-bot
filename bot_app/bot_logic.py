@@ -74,6 +74,10 @@ def generate_response(firstname, chat_id, msg):
     # enquiry/facilities
     elif "facilities" in msg:
         facilities(chat_id)
+    elif "study" in msg:
+        facility(chat_id, "study")
+    elif "discussion" in msg:
+        facility(chat_id, "discussion")
     else:
         exception(chat_id)
 

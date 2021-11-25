@@ -260,6 +260,7 @@ def hall(chat_id, detail):
         response = "<b>Rules and regulations.</b>"
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
+    another_enquiry(chat_id)
 
 
 # enquiry/jcr

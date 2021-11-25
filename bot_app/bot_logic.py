@@ -78,6 +78,8 @@ def generate_response(firstname, chat_id, msg):
         facility(chat_id, "study")
     elif "discussion" in msg:
         facility(chat_id, "discussion")
+    elif "shop" in msg:
+        facility(chat_id, "shop")
     else:
         exception(chat_id)
 
@@ -235,7 +237,8 @@ def hall_accomodation(chat_id):
                 """
 
     # ReplyKeyboardMarkup Object
-    keyboard_markup = {"keyboard": [["Room Application", "Accommodation FAQ"], ["Rules and Regulations"]], "one_time_keyboard": True}
+    # keyboard_markup = {"keyboard": [["Room Application", "Accommodation FAQ"], ["Rules and Regulations"]], "one_time_keyboard": True}
+    keyboard_markup = {"keyboard": [["Room Application", "Accommodation FAQ"]], "one_time_keyboard": True}
     reply_keyboard_markup = json.dumps(keyboard_markup)
     r = requests.get(f"{url}/sendMessage",
                      params={"chat_id": chat_id, "text": response, "reply_markup": reply_keyboard_markup})
@@ -309,6 +312,9 @@ def facility(chat_id, type):
         response = "Second floor of the W block "
     elif type == "discussion":
         response = "Third floor of the Wblock"
+    elif type == "shops":
+        response = "Please visit the porters to know various locations of shops in the hall."
+
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
     another_enquiry(chat_id)

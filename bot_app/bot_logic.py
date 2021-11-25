@@ -78,7 +78,7 @@ def generate_response(firstname, chat_id, msg):
         facility(chat_id, "study")
     elif "discussion" in msg:
         facility(chat_id, "discussion")
-    elif "shop" in msg:
+    elif "shops" in msg:
         facility(chat_id, "shop")
     else:
         exception(chat_id)
@@ -312,7 +312,7 @@ def facility(chat_id, type):
         response = "Second floor of the W block "
     elif type == "discussion":
         response = "Third floor of the Wblock"
-    elif type == "shops":
+    elif type == "shop":
         response = "Please visit the porters to know various locations of shops in the hall."
 
 

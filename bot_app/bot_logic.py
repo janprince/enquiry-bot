@@ -33,7 +33,7 @@ def generate_response(firstname, chat_id, msg):
         index(firstname, chat_id)
     elif "/about" in msg or "/info" in msg:
         info(chat_id)
-    elif "/menu" in msg or 'menu' in msg:
+    elif "/menu" in msg or 'menu' in msg or "/help" in msg or "help" in msg:
         menu(chat_id)
     elif "/enquiry" in msg or "enquiry" in msg:
         enquiry(chat_id)
@@ -205,10 +205,10 @@ def fee(chat_id, type):
         """
     elif type == "fuel":
         response = """ Fuel fees are used to manage electric generators/power plants when there are electric outages.
-        \n Kindly visit the administrative office for more details on payment of fuel fees.
+        \n Fuel fee not available now.
         """
     else:
-        response = """No information on this type of fee. Kindly visit the Administrative office or the porters lodge for more information."""
+        response = """No information on this type of fee."""
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response, "parse_mode":"HTML"})
 
@@ -299,7 +299,7 @@ def facility(chat_id, type):
     elif type == "discussion":
         response = "Third floor of the Wblock"
     elif type == "shop":
-        response = "Please visit the porters to know various locations of shops in the hall."
+        response = "No information on location of shops."
 
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})

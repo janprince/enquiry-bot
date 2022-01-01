@@ -16,6 +16,4 @@ def setWebHook(hook_url):
 
 
 if __name__ == "__main__":
-    setWebHook("https://hallbot.pythonanywhere.com/2056767990:AAGcll2S1e9skPuJoPHgDJFKcTuDqtNvwhw")
-
-# https://hallbot.pythonanywhere.com/2056767990:AAGcll2S1e9skPuJoPHgDJFKcTuDqtNvwhw
+    setWebHook("")

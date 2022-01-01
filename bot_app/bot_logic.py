@@ -299,7 +299,7 @@ def facility(chat_id, type):
     elif type == "discussion":
         response = "Third floor of the Wblock"
     elif type == "shop":
-        response = "No information on location of shops."
+        response = "Sorry, No information on location of shops."
 
 
     r = requests.get(f"{url}/sendMessage", params={"chat_id": chat_id, "text": response})
